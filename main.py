@@ -123,6 +123,9 @@ def files_cleanup():
     files = glob.glob('files/*')
     for f in files:
         os.remove(f)
+    files = glob.glob('metadata/*')
+    for f in files:
+        os.remove(f)
 
 
 def run_experiment(number_of_files):
@@ -168,8 +171,17 @@ def run_experiment(number_of_files):
     print(f"Multi file avg time: {np.mean(multi_file_times)}")
 
 
+def create_dirs():
+    os.makedirs("files", exist_ok=True)
+    os.makedirs("mapreducetemp", exist_ok=True)
+    os.makedirs("metadata", exist_ok=True)
+    os.makedirs("output", exist_ok=True)
+    os.makedirs("temp", exist_ok=True)
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    create_dirs()
     run_experiment(50)
     run_experiment(100)
     run_experiment(200)
